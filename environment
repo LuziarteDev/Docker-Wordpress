@@ -1,0 +1,22 @@
+# Considerações:
+#  * Coloque o dump dentro de mysql-dump
+#  * Desative o PHPMYADMIN se subir em produção
+
+# Configuracoes do WordPress
+WP_USER=wp_admin
+WP_PASSWORD=Senha123!
+WP_NAME=wp_jujubajoias
+WP_PREFIX=wp_site_
+WP_SITE_URL= # ALTERAR NO mysql-dump/zmigrate.sql #
+
+# Configuracoes do MySql
+MYSQL_USER=wp_admin
+MYSQL_PASSWORD=Senha123!
+MYSQL_NAME=wp_jujubajoias
+
+#Configuracoes do SMTP para envio de emails
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=emaile@gmail.com.br
+SMTP_PASSWORD=Senha123!
+SMTP_PROTOCOL=ssl

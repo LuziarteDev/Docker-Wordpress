@@ -1,0 +1,50 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    container_name: WordPress_Apache
+    volumes:
+      - ./site/public_html:/var/www/html
+    env_file: environment
+    restart: always
+    ports:
+      - 15235:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_NAME}
+      WORDPRESS_TABLE_PREFIX: ${WP_PREFIX}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_PROTOCOL: ${SMTP_PROTOCOL}
+            
+  db:
+    image: mysql:5.7
+    container_name: MySql
+    volumes:
+      - ./mysql-dump:/docker-entrypoint-initdb.d
+      - ./mysql-dump/zmigrate.sql:/docker-entrypoint-initdb.d/migrate.sql
+      - ./wp-db:/var/lib/mysql:rw
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: Php_My_Admin
+    links: 
+        - db:db
+    ports:
+        - 15236:80
+    environment:
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD} 
