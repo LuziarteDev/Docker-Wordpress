@@ -5,14 +5,14 @@
 # Configuracoes do WordPress
 WP_USER=wp_admin
 WP_PASSWORD=Senha123!
-WP_NAME=wp_jujubajoias
-WP_PREFIX=wp_site_
+WP_NAME=wp_nome_do_banco
+WP_PREFIX=wp_
 WP_SITE_URL= # ALTERAR NO mysql-dump/zmigrate.sql #
 
 # Configuracoes do MySql
 MYSQL_USER=wp_admin
 MYSQL_PASSWORD=Senha123!
-MYSQL_NAME=wp_jujubajoias
+MYSQL_NAME=wp_nome_do_banco
 
 #Configuracoes do SMTP para envio de emails
 SMTP_HOST=smtp.gmail.com
